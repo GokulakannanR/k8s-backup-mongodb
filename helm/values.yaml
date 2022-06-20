@@ -6,7 +6,7 @@ schedule: "\"0 1 * * *\""
 image: "ptuladhar/k8s-backup-mongodb:latest"
 
 withOplog: true
-mongoDbUri: ""
+redisDbUri: ""
 bucketUri: ""
 awsAccessKeyId: ""
 awsSecretAccessKey: ""
