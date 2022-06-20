@@ -2,7 +2,7 @@
 
 set -e
 
-SCRIPT_NAME=backup-mongodb
+SCRIPT_NAME=backup-redis
 ARCHIVE_NAME=mongodump_$(date +%Y%m%d_%H%M%S).gz
 OPLOG_FLAG=""
 
