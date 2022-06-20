@@ -1,6 +1,6 @@
 apiVersion: v2
 name: k8s-backup-mongodb
-description: Mongo db backup as a cronjob - helm package
+description: Redis db backup as a cronjob - helm package
 
 # A chart can be either an 'application' or a 'library' chart.
 #
