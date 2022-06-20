@@ -1,8 +1,8 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: backup-mongodb
-  namespace: backup-mongodb
+  name: backup-redis
+  namespace: backup-redis
 spec:
   schedule: {{ .Values.schedule | quote}}
   concurrencyPolicy: Forbid
@@ -16,12 +16,12 @@ spec:
         spec:
           restartPolicy: OnFailure
           containers:
-          - name: backup-mongodb
+          - name: backup-redis
             image: {{ .Values.image }}
             env:
-            - name: MONGODB_URI
-              value: {{ .Values.mongoDbUri | quote}}
-            - name: MONGODB_OPLOG
+            - name: RedisURI
+              value: {{ .Values.redisDbUri | quote}}
+            - name: RedisOplog
               value: {{ .Values.withOplog | quote}}
             - name: BUCKET_URI
               value: {{ .Values.bucketUri | quote }}
