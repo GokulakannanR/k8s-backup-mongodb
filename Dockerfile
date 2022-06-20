@@ -8,8 +8,8 @@ WORKDIR /scripts
 COPY backup-mongodb.sh .
 RUN chmod +x backup-mongodb.sh
 
-ENV MONGODB_URI="" \
-    MONGODB_OPLOG="" \
+ENV RedisURI="" \
+    RedisOplog="" \
     BUCKET_URI="" \
     AWS_ACCESS_KEY_ID="" \
     AWS_SECRET_ACCESS_KEY="" \
