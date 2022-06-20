@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: backup-mongodb
+  name: backup-redis
 spec:
   schedule: "0 */1 * * *"
   concurrencyPolicy: Forbid
@@ -16,16 +16,16 @@ spec:
           restartPolicy: OnFailure
           
           containers:
-          - name: backup-mongodb
+          - name: backup-redis
             image: ptuladhar/k8s-backup-mongodb:latest
             env:
-            - name: MONGODB_URI
+            - name: RedisURI
               valueFrom:
                 secretKeyRef:
-                  name: mongodb-uri
-                  key: MONGODB_URI
+                  name: redis-uri
+                  key: RedisURI
             
-            - name: MONGODB_OPLOG
+            - name: RedisOplog
               value: true
 
             - name: BUCKET_URI
