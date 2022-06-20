@@ -1,4 +1,4 @@
-FROM mongo:latest
+FROM redis:latest
 
 RUN apt update && \
     apt install awscli p7zip-full -y
