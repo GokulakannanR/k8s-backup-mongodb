@@ -2,25 +2,25 @@
 
 set -e
 
-SCRIPT_NAME=backup-mongodb
-ARCHIVE_NAME=mongodump_$(date +%Y%m%d_%H%M%S).gz
+SCRIPT_NAME=backup-redis
+ARCHIVE_NAME=redisdump_$(date +%Y%m%d_%H%M%S).gz
 OPLOG_FLAG=""
 
-if [ -n "$MONGODB_OPLOG" ]; then
+if [ -n "$RedisOplog" ]; then
 	OPLOG_FLAG="--oplog"
 fi
 
-echo "[$SCRIPT_NAME] Dumping all MongoDB databases to compressed archive..."
+echo "[$SCRIPT_NAME] Dumping all RedisDB databases to compressed archive..."
 
-mongodump $OPLOG_FLAG \
+redisdump $OPLOG_FLAG \
 	--archive="$ARCHIVE_NAME" \
 	--gzip \
-	--uri "$MONGODB_URI"
+	--uri "$RedisURI"
 
 COPY_NAME=$ARCHIVE_NAME
 if [ ! -z "$PASSWORD_7ZIP" ]; then
     echo "[$SCRIPT_NAME] 7Zipping with password..."
-    COPY_NAME=mongodump_$(date +%Y%m%d_%H%M%S).7z
+    COPY_NAME=redisdump_$(date +%Y%m%d_%H%M%S).7z
     7za a -tzip -p"$PASSWORD_7ZIP" -mem=AES256 "$COPY_NAME" "$ARCHIVE_NAME"
 fi
 
