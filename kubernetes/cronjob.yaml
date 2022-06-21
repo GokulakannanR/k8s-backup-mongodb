@@ -22,9 +22,6 @@ spec:
                 secretKeyRef:
                   name: redis-uri
                   key: RedisURI
-
-
-
             - name: BUCKET_URI
               valueFrom:
                 secretKeyRef:
